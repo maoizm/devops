@@ -4,7 +4,7 @@
 	"build_name_result": "{{isotime \"20060102-1504\"}}",
 	"build_name_source": "20160122-1819",
 	"box_basename": "{{ user `template` }}",
-    "headless": true
+    "headless": "true"
   },
   
   "builders": [
