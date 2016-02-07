@@ -1,14 +1,13 @@
 {
   "variables": {
-    "box_basename": "ubuntu-14.04-x86",
-    "build_timestamp": "{{isotime \"20060102150405\"}}",
-	"name": "ubuntu-14.04-i386",
-	"template": "ubuntu-14.04-i386",
-    "headless": "",
+	"template": "ubuntu-14.04-x86-base",
+	"build_name": "{{isotime \"20060102-1504\"}}",	
+	"box_basename": "{{ user `template` }}",
 	
     "mirror": "http://releases.ubuntu.com", "mirror_directory": "14.04.3", "iso_name": "ubuntu-14.04.3-server-i386.iso",
     "iso_checksum": "a5c02e25a8f6ab335269adb1a6c176edff075093b90854439b4a90fce9b31f28", "iso_checksum_type": "sha256",
 	"preseed_path": "preseed.cfg",
+	"headless": true,
 	
 	"metadata": "mao.metadata.json",
 	"version": "2.1.TIMESTAMP",
@@ -24,7 +23,9 @@
       ],  
       "disk_size": 40960, "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-	  "output_directory": "builds/ovf", /packer-{{user `template`}}-virtualbox",
+	  
+	  "output_directory": "builds/{{user `build_name`}}", 
+	  
       "vm_name": "{{ user `template` }}",	  
       "virtualbox_version_file": ".vbox_version",
 	  "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
@@ -71,7 +72,7 @@
   "post-processors": [
     {
       "type": "vagrant",
-	  "output": "builds/{{user `box_basename`}}.{{.Provider}}.box",
+	  "output": "builds/{{user `build_name`}}/{{user `box_basename`}}.{{.Provider}}.box",
 	  "compression_level": 9,
 	  "keep_input_artifact": true
     }
