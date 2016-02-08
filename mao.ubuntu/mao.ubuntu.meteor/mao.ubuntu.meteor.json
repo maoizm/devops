@@ -30,7 +30,12 @@
 		"sudo apt-get -y install git curl",
 		"curl https://install.meteor.com/ | sh"
 	  ]
-    }
+    },
+	{
+	  "type": "shell",
+	  "script": "minimize.sh",
+	  "execute_command": "echo 'vagrant' | sudo -S -E  '{{.Path}}'"
+	}
   ],
   
   "post-processors": [
