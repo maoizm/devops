@@ -1,39 +1,52 @@
 {
   "variables": {
-	"template": "u14-x86-LAMP",
-	"build_name_result": "{{isotime \"20060102-1504\"}}",
-	"build_name_source": "20160122-1819",
-	"box_basename": "{{ user `template` }}",
+    "template": "u14-x86-LAMP",
+    "build_name_result": "{{isotime \"20060102-1504\"}}",
+    "build_name_source": "20160225-0033",
+    "box_basename": "u14-x86-LAMP",
     "headless": "true"
   },
   
   "builders": [
     {
-	  "type": "virtualbox-ovf",
-	  "source_path": "../builds/{{user `build_name_source`}}/ubuntu-14.04-x86-base.ovf",
-      "ssh_username": "vagrant", ssh_password": "vagrant",
-	  "ssh_wait_timeout": "30s",
+      "type": "virtualbox-ovf",
+      "source_path": "../builds/{{user `build_name_source`}}/ubuntu-14.04-x86-base.ovf",
+      "output_directory": "builds/{{user `build_name_result`}}",
+      "vm_name": "{{ user `template` }}",
+      "headless": "{{ user `headless` }}",
+      
+      "guest_additions_mode": "disable",
+      
+      "ssh_username": "vagrant", "ssh_password": "vagrant",
+      "ssh_wait_timeout": "30s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
   
   "provisioners": [
     {
-	  "type": "shell",
-	  "inline": [
-		"sudo apt-get -y update",  Переделать
-		"sudo apt-get -y install git curl",
-		"curl https://install.meteor.com/ | sh"
-	  ]
+      "type": "shell",
+      "inline_shebang": "/bin/bash -e",
+      "inline": [
+        "export DEBIAN_FRONTEND='noninteractive'",
+        "sudo apt-get -y update",  
+        "sudo apt-get -y install git curl",
+        "sudo apt-get -y install apache2 libapache2-mod-php5",
+        "sudo apt-get -y install php5 php5-mysql php-pear",
+        "sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password maomysql'",
+        "sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password maomysql'",
+        "sudo apt-get -y install mysql-server",
+        "export DEBIAN_FRONTEND="
+      ]
     }
   ],
   
   "post-processors": [
     {
       "type": "vagrant",
-	  "output": "builds/{{user `box_basename`}}.{{.Provider}}.box",
-	  "compression_level": 9,
-	  "keep_input_artifact": true
+      "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
+      "compression_level": 9,
+      "keep_input_artifact": true
     }
   ]
 }

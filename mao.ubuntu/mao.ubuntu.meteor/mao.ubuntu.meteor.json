@@ -1,44 +1,44 @@
 {
   "variables": {
-	"template": "u14-x86-meteor",
-	"build_name_result": "{{isotime \"20060102-1504\"}}",
-	"build_name_source": "20160122-1819",
-	"box_basename": "u14-x86-meteor",
+    "template": "u14-x86-meteor",
+    "build_name_result": "{{isotime \"20060102-1504\"}}",
+    "build_name_source": "20160122-1819",
+    "box_basename": "u14-x86-meteor",
     "headless": "true"
   },
   
   "builders": [
     {
-	  "type": "virtualbox-ovf",
-	  "source_path": "../builds/{{user `build_name_source`}}/ubuntu-14.04-x86-base.ovf",
-	  "output_directory": "builds/{{user `build_name_result`}}",
-	  "vm_name": "{{ user `template` }}",
-	  
-	  "guest_additions_mode": "disable",
-	  
+      "type": "virtualbox-ovf",
+      "source_path": "../builds/{{user `build_name_source`}}/ubuntu-14.04-x86-base.ovf",
+      "output_directory": "builds/{{user `build_name_result`}}",
+      "vm_name": "{{ user `template` }}",
+      
+      "guest_additions_mode": "disable",
+      
       "ssh_username": "vagrant", "ssh_password": "vagrant",
-	  "ssh_wait_timeout": "30s",
+      "ssh_wait_timeout": "30s",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
     }
   ],
   
   "provisioners": [
     {
-	  "type": "shell",
-	  "inline": [
-		"sudo apt-get -y update",
-		"sudo apt-get -y install git curl",
-		"curl https://install.meteor.com/ | sh"
-	  ]
+      "type": "shell",
+      "inline": [
+        "sudo apt-get -y update",
+        "sudo apt-get -y install git curl",
+        "curl https://install.meteor.com/ | sh"
+      ]
     }
   ],
   
   "post-processors": [
     {
       "type": "vagrant",
-	  "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
-	  "compression_level": 9,
-	  "keep_input_artifact": true
+      "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
+      "compression_level": 9,
+      "keep_input_artifact": true
     }
   ]
 }

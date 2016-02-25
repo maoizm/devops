@@ -1,0 +1,16 @@
+"post-processors": [
+    {
+      "type": "vagrant",
+      "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
+      "compression_level": 9,
+      "keep_input_artifact": true
+    },
+    {
+      "type": "shell-local",
+      "inline": [
+        "gunzip builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
+        "tar -uf builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}} vagrant\metadata.json",
+        "gzip builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}"
+      ]
+    }
+]
