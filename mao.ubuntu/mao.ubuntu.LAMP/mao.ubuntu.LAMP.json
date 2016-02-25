@@ -38,7 +38,12 @@
         "sudo apt-get -y install mysql-server",
         "export DEBIAN_FRONTEND="
       ]
-    }
+    },
+    {
+      "type": "shell",
+      "script": "scripts/minimize.sh",
+      "execute_command": "echo 'vagrant' | sudo -S -E  '{{.Path}}'"
+    } 
   ],
   
   "post-processors": [

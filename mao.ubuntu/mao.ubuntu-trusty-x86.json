@@ -63,7 +63,10 @@
     },
     {
       "type": "shell",
-      "script": "mao.ubuntu.sh",
+      "scripts": [
+        "scripts/mao.ubuntu.sh",
+        "scripts/minimize.sh"
+      ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E  '{{.Path}}'",
       "environment_vars": [ "HOME_DIR=/home/vagrant", "METADATA={{user `metadata`}}" ]    
     }
