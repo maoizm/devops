@@ -2,7 +2,7 @@
   "variables": {
     "template": "u14-x86-LAMP",
     "build_name_result": "{{isotime \"20060102-1504\"}}",
-    "build_name_source": "20160225-0033",
+    "build_name_source": "20160225-1312",
     "box_basename": "u14-x86-LAMP",
     "headless": "true"
   },
@@ -47,11 +47,11 @@
   ],
   
   "post-processors": [
-    {
-      "type": "vagrant",
-      "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
-      "compression_level": 9,
-      "keep_input_artifact": true
-    }
+      {
+        "type": "vagrant",
+        "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
+        "compression_level": 9,
+        "keep_input_artifact": true
+      }
   ]
 }
