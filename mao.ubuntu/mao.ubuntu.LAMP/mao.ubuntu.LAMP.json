@@ -51,7 +51,8 @@
         "type": "vagrant",
         "output": "builds/{{user `build_name_result`}}/{{user `box_basename`}}.{{.Provider}}.box",
         "compression_level": 9,
-        "keep_input_artifact": true
+        "keep_input_artifact": true,
+        "vagrantfile_template": "Vagrantfile.template"
       }
   ]
 }

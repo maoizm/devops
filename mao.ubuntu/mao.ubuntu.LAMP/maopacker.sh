@@ -26,8 +26,8 @@ template=$(jq -r '.variables.template' < $1)
 template="$(echo -e "${template}" | sed -e 's/[[:space:]]*$//')"
 box_name=${2:-"mao/lamp32"}
 
-if ! vagrant box add --force --name $box_name builds/$template.virtualbox.box ; then
-    printf '%s\n' 'maopacker: Error in vagrant' >&2
-	printf '%s%s%s%s%s\n' 'maopacker: Command: vagrant box add --force --name ' $box_name ' builds/' $template '.virtualbox.box' >&2
-    exit 2
-fi
+#lif ! vagrant box add --force --name $box_name builds/$template.virtualbox.box ; then
+#l    printf '%s\n' 'maopacker: Error in vagrant' >&2
+#l    printf 'maopacker: Command: vagrant box add --force --name %s builds/%s.virtualbox.box\n' $box_name $template >&2
+#l    exit 2
+#lfi

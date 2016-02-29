@@ -1,0 +1,24 @@
+{
+  "name": "mao/lamp32",
+  "description": "mao Ubuntu 14.04.4 LTS 32-bit, git, curl, Apache 2.4, PHP 5, MySQL",
+  "short_description": "Ubuntu 14.04.4 x32 Apache/PHP/MySQL",
+  "versions": [{
+    "version": "0.1.0",
+    "status": "active",
+    "providers": [{
+      "name": "virtualbox",
+      "url": "http://localhost/builds/20160226-1702/u14-x86-LAMP.virtualbox.box",  
+      "checksum_type": "sha256",
+      "checksum": "b0efa6d1304a3ffcc04893c9f23f9e506d8b79e1ab1bf7ed96acce6eec0c7a20"
+    }]
+  },{
+    "version": "0.1.5",
+    "status": "active",
+    "providers": [{
+      "name": "virtualbox",
+      "url": "http://localhost/builds/20160229-1502/u14-x86-LAMP.virtualbox.box",  
+      "checksum_type": "sha256",
+      "checksum": "ad4ea57420352cc6c52586a86bd4bf482a03960155df01a6ead5c021bb6403cc"
+    }]  
+  }]
+}
