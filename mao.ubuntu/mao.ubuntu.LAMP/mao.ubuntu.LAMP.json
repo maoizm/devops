@@ -53,6 +53,17 @@
         "compression_level": 9,
         "keep_input_artifact": true,
         "vagrantfile_template": "Vagrantfile.template"
+      },
+      {
+        "type": "atlas",
+        "artifact": "ma0/lamp32",
+        "token": "H3rmA9MvBjBSvA.atlasv1.sJGoGrXimMJytaEjBdoyLnLRNkdi7wSct0SJ39zfjLxTAuUffHYe3rzNsagObcUCz2I"
+        "only": ["virtualbox-ovf"],
+        "artifact_type": "vagrant.box",
+          "metadata": {
+            "provider": "virtualbox",
+            "version": "0.1.6"
+          }
       }
   ]
 }
